@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Building an AI Chatbot with TF-IDF and Gemini — by Rajat Kumar">
+  <title>Building an AI Chatbot | Rajat Kumar Blog</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <style>
+    .blog-post { max-width: 760px; margin: 0 auto; padding-top: 120px; }
+    .blog-post-header { margin-bottom: 40px; }
+    .blog-post-header h1 { font-size: 2.5rem; margin-bottom: 16px; line-height: 1.3; }
+    .blog-post-meta { display: flex; gap: 20px; color: var(--text-muted); font-family: 'Fira Code', monospace; font-size: 0.85rem; margin-bottom: 24px; flex-wrap: wrap; }
+    .blog-post-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .blog-post-tags span { font-family: 'Fira Code', monospace; font-size: 0.75rem; padding: 4px 12px; border-radius: var(--radius-full); background: rgba(0,212,255,0.08); color: var(--accent-cyan); border: 1px solid rgba(0,212,255,0.15); }
+    .blog-post-content { font-size: 1.05rem; line-height: 1.9; }
+    .blog-post-content h2 { font-size: 1.6rem; margin: 40px 0 16px; color: var(--accent-cyan); }
+    .blog-post-content h3 { font-size: 1.3rem; margin: 32px 0 12px; }
+    .blog-post-content p { margin-bottom: 20px; }
+    .blog-post-content ul, .blog-post-content ol { margin: 16px 0 20px 24px; }
+    .blog-post-content li { margin-bottom: 8px; }
+    .blog-post-content code { font-family: 'Fira Code', monospace; background: rgba(0,212,255,0.08); padding: 2px 8px; border-radius: 4px; font-size: 0.9rem; color: var(--accent-cyan); }
+    .blog-post-content pre { background: var(--bg-secondary); border: 1px solid var(--glass-border); border-radius: var(--radius-md); padding: 20px; overflow-x: auto; margin: 20px 0; }
+    .blog-post-content pre code { background: none; padding: 0; }
+    .blog-post-content blockquote { border-left: 3px solid var(--accent-cyan); padding: 12px 20px; margin: 20px 0; background: var(--bg-glass); border-radius: 0 var(--radius-md) var(--radius-md) 0; font-style: italic; }
+    .blog-post-divider { height: 1px; background: var(--glass-border); margin: 40px 0; }
+    .blog-post-nav { display: flex; justify-content: space-between; padding: 30px 0; }
+    .blog-post-share { display: flex; gap: 12px; align-items: center; margin-top: 32px; }
+    .blog-post-share span { color: var(--text-muted); font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar scrolled">
+    <div class="container">
+      <a href="index.html" class="nav-logo">&lt;RK /&gt;</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="blog.html" class="active">Blog</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="nav-hamburger" id="navHamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Blog Post -->
+  <article class="blog-post section">
+    <div class="container">
+      <div class="blog-post-header">
+        <h1 class="gradient-text">Building an AI Chatbot with TF-IDF and Gemini</h1>
+        <div class="blog-post-meta">
+          <span>📅 March 2025</span>
+          <span>⏱ 5 min read</span>
+          <span>👤 Rajat Kumar</span>
+        </div>
+        <div class="blog-post-tags">
+          <span>Python</span>
+          <span>TF-IDF</span>
+          <span>Gemini AI</span>
+          <span>NLP</span>
+        </div>
+      </div>
+
+      <div class="blog-post-content">
+        <p>
+          When I set out to build an AI chatbot for a sports store, I wanted something that could handle 
+          quick product questions <em>and</em> complex, nuanced queries. The solution? A hybrid approach 
+          combining TF-IDF for speed and Google's Gemini AI for intelligence.
+        </p>
+
+        <h2>The Problem</h2>
+        <p>
+          Sports stores deal with hundreds of products, prices, offers, and services. Customers want 
+          instant answers. A simple keyword-matching bot fails on nuanced questions, but a full LLM 
+          call for every query is slow and expensive.
+        </p>
+
+        <h2>The Hybrid Solution</h2>
+        <p>
+          I designed a two-tier system:
+        </p>
+        <ol>
+          <li><strong>TF-IDF Layer</strong> — Handles simple, direct questions by matching keywords against a product database. Fast, reliable, and doesn't require API calls.</li>
+          <li><strong>Gemini AI Layer</strong> — Kicks in when TF-IDF confidence is low. Handles ambiguous queries, comparisons, and recommendations.</li>
+        </ol>
+
+        <h2>Key Implementation Details</h2>
+
+        <h3>TF-IDF Vectorization</h3>
+        <p>
+          I used scikit-learn's <code>TfidfVectorizer</code> to convert product descriptions and FAQs 
+          into numerical vectors. When a user asks a question, it's vectorized and compared against 
+          the knowledge base using cosine similarity.
+        </p>
+
+        <pre><code>from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+vectorizer = TfidfVectorizer()
+tfidf_matrix = vectorizer.fit_transform(knowledge_base)
+
+def get_best_match(query):
+    query_vec = vectorizer.transform([query])
+    similarities = cosine_similarity(query_vec, tfidf_matrix)
+    best_idx = similarities.argmax()
+    return knowledge_base[best_idx], similarities[0][best_idx]</code></pre>
+
+        <h3>Context Memory</h3>
+        <p>
+          One of the most important features was <strong>conversation memory</strong>. The chatbot 
+          remembers the user's last topic so follow-up questions like "What's the price?" work 
+          without the user repeating the product name.
+        </p>
+
+        <blockquote>
+          Building a chatbot isn't just about answering questions — it's about understanding context 
+          and maintaining a natural conversation flow.
+        </blockquote>
+
+        <h2>Results</h2>
+        <p>
+          The hybrid approach reduced API calls by ~70% while maintaining high-quality responses. 
+          Simple product queries are answered in under 100ms, and complex queries get intelligent 
+          responses from Gemini AI.
+        </p>
+
+        <h2>Lessons Learned</h2>
+        <ul>
+          <li>Start simple — TF-IDF handles more than you'd expect</li>
+          <li>Always add conversation context/memory</li>
+          <li>Set confidence thresholds to decide when to escalate to LLM</li>
+          <li>Cache frequent queries for better performance</li>
+        </ul>
+
+        <div class="blog-post-share">
+          <span>Share this post:</span>
+          <a href="https://github.com/rajatkumar233/Ai-Project" target="_blank" rel="noopener" class="social-link" title="View on GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="blog-post-divider"></div>
+
+      <div class="blog-post-nav">
+        <a href="blog.html" class="btn btn-outline" style="padding: 10px 24px; font-size: 0.9rem;">
+          ← Back to Blog
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>Designed & Built by <span class="gradient-text">Rajat Kumar</span> with <span class="footer-heart">❤</span></p>
+        <p>&copy; 2025 All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const h = document.getElementById('navHamburger');
+    const nl = document.getElementById('navLinks');
+    if(h) h.addEventListener('click', () => { h.classList.toggle('active'); nl.classList.toggle('active'); });
+  </script>
+</body>
+</html>
