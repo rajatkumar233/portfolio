@@ -49,3 +49,21 @@ This website is built with simple and clean code:
 - Counter animations for achievements
 - Working contact form layout
 - Back to top button
+
+## File Structure
+
+```
+portfolio/
+├── index.html          — Main homepage
+├── blog.html           — Blog listing page
+├── blog-post.html      — Individual blog post page
+├── vercel.json          — Vercel deployment config
+├── Rajat Photo.jpeg     — My profile photo
+├── RajatkumarCV.pdf     — My resume (PDF)
+├── RajatkumarCV.docx    — My resume (Word)
+├── css/
+│   ├── style.css        — Main styles
+│   └── animations.css   — Animation styles
+└── js/
+    └── main.js          — All JavaScript logic
+```
