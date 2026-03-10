@@ -67,3 +67,26 @@ portfolio/
 └── js/
     └── main.js          — All JavaScript logic
 ```
+
+## How to Run Locally
+
+1. Download or clone this repo
+2. Open `index.html` in your browser
+3. That's it! No build tools or frameworks needed
+
+Or if you want a local server:
+```bash
+python -m http.server 8080
+```
+Then open http://localhost:8080
+
+## Contact Me
+
+- **Email:** rajatkumar39008@gmail.com
+- **LinkedIn:** [linkedin.com/in/rajatkumar96](http://www.linkedin.com/in/rajatkumar96)
+- **GitHub:** [github.com/rajatkumar233](https://github.com/rajatkumar233)
+- **Phone:** +91-7455893566
+
+---
+
+Made with ❤ by Rajat Kumar
