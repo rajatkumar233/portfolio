@@ -36,3 +36,16 @@ This website is built with simple and clean code:
 - **HTML** — For the page structure
 - **CSS** — For styling, animations, and responsive design
 - **JavaScript** — For interactive features like typing effect, scroll animations, and project filters
+
+## Cool Features
+
+- Dark theme with modern glassmorphism design
+- Typing animation in the hero section
+- Particle canvas background
+- Smooth scroll reveal animations
+- Responsive layout that works on mobile and desktop
+- Project filter buttons (All, AI/ML, Security, Data Science, Dashboard)
+- Animated skill bars
+- Counter animations for achievements
+- Working contact form layout
+- Back to top button
