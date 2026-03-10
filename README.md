@@ -14,3 +14,17 @@ I am a B.Tech Computer Science student at Lovely Professional University. I love
 - **Achievements** — My coding stats like 400+ problems solved on LeetCode and GFG
 - **Blog** — Articles I wrote about my projects and tech topics
 - **Contact** — How to reach me via email, phone, or LinkedIn
+
+## My Projects
+
+### 1. AI Sports Store Chatbot
+A smart chatbot that helps customers find sports products. It uses TF-IDF for quick answers and Google Gemini AI for tough questions. Built with Python.
+
+### 2. Secure Authentication Module
+A login system with password and OTP verification. It has account lockout for safety, an admin panel to manage users, and logging for everything.
+
+### 3. California Housing Price Prediction
+Used machine learning to predict house prices in California. Tried Linear Regression, Decision Tree, and Random Forest models. Also made a Power BI dashboard for visualization.
+
+### 4. Blinkit Grocery Dashboard
+Analyzed 8,500+ rows of Blinkit grocery store data. Found patterns in sales, store sizes, and customer ratings. Built a Power BI dashboard to show the results.
