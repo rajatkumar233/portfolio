@@ -28,3 +28,11 @@ Used machine learning to predict house prices in California. Tried Linear Regres
 
 ### 4. Blinkit Grocery Dashboard
 Analyzed 8,500+ rows of Blinkit grocery store data. Found patterns in sales, store sizes, and customer ratings. Built a Power BI dashboard to show the results.
+
+## Tech Stack Used
+
+This website is built with simple and clean code:
+
+- **HTML** — For the page structure
+- **CSS** — For styling, animations, and responsive design
+- **JavaScript** — For interactive features like typing effect, scroll animations, and project filters
